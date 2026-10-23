@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import Cta from '../components/Cta.astro';
+import { pricing, yen } from '../config/site';
+
+const { lesson, support } = pricing;
+const example = (n: number) => lesson.price * n + support.price;
+---
+
+<Base title="料金" description="授業料とサポート費、支払い方法、月額の例。">
+  <PageTitle title="料金" lead="授業料と、月額のサポート費の2つです。" />
+
+  <section class="section" aria-labelledby="fees">
+    <div class="wrap">
+      <h2 id="fees">
+        料金表{!pricing.confirmed && <span class="badge">予定</span>}
+      </h2>
+      {!pricing.confirmed && <p class="muted">試験運用の結果を見て、正式な金額を決めます。</p>}
+
+      <dl class="price-list">
+        <div class="price-row">
+          <dt>{lesson.label}</dt>
+          <dd class="amount">{yen(lesson.price)}<small>{lesson.unit}</small></dd>
+          <dd class="note">{lesson.note}</dd>
+        </div>
+        <div class="price-row">
+          <dt>{support.label}</dt>
+          <dd class="amount">{yen(support.price)}<small>{support.unit}</small></dd>
+          <dd class="note">{support.note}</dd>
+        </div>
+        <div class="price-row">
+          <dt>入会金</dt>
+          <dd class="amount">{pricing.admissionFee === null ? 'なし' : yen(pricing.admissionFee)}</dd>
+        </div>
+      </dl>
+      <p class="small">{pricing.taxNote}</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="examples">
+    <div class="wrap">
+      <h2 id="examples">月額の例</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">授業の回数</th><th scope="col">月のコマ数</th><th scope="col">月額</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">週1回</th><td>4コマ</td><td>{yen(example(4))}</td></tr>
+            <tr><th scope="row">週2回</th><td>8コマ</td><td>{yen(example(8))}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">月の授業回数は、祝日や振替で前後します。</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="pay">
+    <div class="wrap">
+      <h2 id="pay">お支払い</h2>
+      <dl class="defs">
+        <dt>方法</dt><dd>{pricing.payment}</dd>
+        <dt>締め日</dt><dd>{pricing.billing}</dd>
+        <dt>欠席・振替</dt><dd><a href="/legal/terms/">利用規約</a>に従います。</dd>
+        <dt>休会・解約</dt><dd><a href="/legal/terms/">利用規約</a>に従います。契約内容によってはクーリング・オフができます。</dd>
+      </dl>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

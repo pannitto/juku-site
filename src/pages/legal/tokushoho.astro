@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import { site, operator, pricing, yen } from '../../config/site';
+---
+
+<Base title="特定商取引法に基づく表記">
+  <PageTitle title="特定商取引法に基づく表記" />
+  <section class="section">
+    <div class="wrap">
+      <p class="draft-note">雛形です。載せる項目と書き方は、規約のレビューの際に専門家に確認してください。</p>
+      <dl class="defs">
+        <dt>事業者</dt><dd>{operator.tradeName}</dd>
+        <dt>代表者</dt><dd>{operator.representative}</dd>
+        <dt>所在地</dt><dd>{operator.address}</dd>
+        <dt>電話番号</dt><dd>{operator.phone}</dd>
+        <dt>メールアドレス</dt><dd>{site.email}</dd>
+        <dt>販売価格</dt>
+        <dd>
+          {pricing.lesson.label}：{pricing.lesson.unit}{yen(pricing.lesson.price)}<br />
+          {pricing.support.label}：{pricing.support.unit}{yen(pricing.support.price)}<br />
+          {pricing.taxNote}
+        </dd>
+        <dt>商品代金以外の必要料金</dt><dd>通信費はお客様のご負担です。【要確認】</dd>
+        <dt>支払方法</dt><dd>{pricing.payment}</dd>
+        <dt>支払時期</dt><dd>{pricing.billing}</dd>
+        <dt>役務の提供時期</dt><dd>契約後、初回面談の日から提供します。【要確認】</dd>
+        <dt>契約期間</dt><dd>【要記入】月単位の自動更新など</dd>
+        <dt>解約・返金</dt><dd><a href="/legal/terms/">利用規約</a>のとおりです。【要記入】クーリング・オフと中途解約の要点</dd>
+        <dt>動作環境</dt><dd>カメラとマイクのあるパソコンまたはタブレット、安定したインターネット回線</dd>
+      </dl>
+    </div>
+  </section>
+</Base>

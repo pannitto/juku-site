@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import Cta from '../components/Cta.astro';
+import { failureCauses } from '../data/options';
+---
+
+<Base title="指導の流れ" description="週ごとの進め方、失点原因の分け方、到達レベルの決め方。">
+  <PageTitle
+    title="指導の流れ"
+    lead="答案を書き、どこで点を落としたかを確かめ、次の1週間で直す。この繰り返しです。"
+  />
+
+  <section class="section" aria-labelledby="cycle">
+    <div class="wrap">
+      <h2 id="cycle">1週間の進め方</h2>
+      <ol class="steps">
+        <li><div><h3>計画を出す</h3><p>週の初めに週間計画を出し、先週の実績（やった範囲、詰まった点）を書き込みます。</p></div></li>
+        <li><div><h3>面談</h3><p>週に1回30分。失点の原因を共有し、翌週の計画を決めます。</p></div></li>
+        <li><div><h3>授業</h3><p>週に1〜2回60分。答案の返却と解説、弱点の演習を行います。</p></div></li>
+        <li><div><h3>提出と質問</h3><p>週の途中で答案と演習を提出し、分からないところは公式LINEで質問します。</p></div></li>
+        <li><div><h3>保護者レポート</h3><p>月に1回、担当講師が学習の様子をまとめてお送りします。</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="causes">
+    <div class="wrap">
+      <h2 id="causes">失点の原因を7つに分ける</h2>
+      <p>
+        答案の一つひとつに、なぜ点を落としたかの印を付けます。同じ印が続けば、授業と計画の両方でそこを直します。
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">分類</th><th scope="col">中身</th></tr></thead>
+          <tbody>
+            {failureCauses.map((c) => <tr><th scope="row">{c.name}</th><td>{c.note}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="level">
+    <div class="wrap">
+      <h2 id="level">単元ごとに、どこまで仕上げるかを決める</h2>
+      <p>
+        単元ごとに到達レベルを0から4までで決めています。志望学部と、科目の得意・不得意によって、目指すレベルを変えます。
+      </p>
+      <p class="muted">【要変更】レベル0〜4の中身を、カリキュラム設計ガイドに合わせて一言ずつ書く。</p>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

@@ -1,0 +1,21 @@
+---
+import LineButton from './LineButton.astro';
+interface Props {
+  heading?: string;
+}
+const { heading = 'まずは無料相談で、今の答案を見せてください。' } = Astro.props;
+---
+
+<section class="cta" aria-labelledby="cta-heading">
+  <div class="wrap">
+    <h2 id="cta-heading">{heading}</h2>
+    <p>
+      公式LINEを追加すると、申し込みの案内が届きます。
+      志望学部と社会の選択科目をうかがって、担当できる講師をご提案します。無理な勧誘はしません。
+    </p>
+    <div class="actions">
+      <LineButton primary />
+      <a class="btn btn-line" href="/contact/">申し込みの流れを見る</a>
+    </div>
+  </div>
+</section>

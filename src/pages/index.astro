@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import AnswerSheet from '../components/AnswerSheet.astro';
+import LineButton from '../components/LineButton.astro';
+import Cta from '../components/Cta.astro';
+import { pricing, yen } from '../config/site';
+---
+
+<Base>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <h1>一橋の答案を、<br />一橋生と書き直す。</h1>
+        <p class="lead">
+          志望学部と社会の選択科目に合わせて、現役の一橋生が授業と学習管理を担当するオンライン個別指導です。
+        </p>
+        <div class="actions">
+          <LineButton primary />
+          <a class="btn btn-line" href="/contact/">申し込みの流れを見る</a>
+        </div>
+      </div>
+      <AnswerSheet
+        text="産業革命で綿織物の大量生産が可能になると、イギリスはインドを原料の供給地とし、製品の市場としても組み込んだ。その結果、インドの手織り綿布業は衰退した。"
+        mark="製品の市場としても組み込んだ"
+        comment="なぜ市場が要るのか。生産が増えたこととの因果を一文で。"
+      />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="why">
+    <div class="wrap">
+      <h2 id="why">この塾でできること</h2>
+      <ul class="points">
+        <li>
+          <h3>希望に合わせて講師を探す</h3>
+          <p>受けたい科目と日時をうかがってから、一橋生の講師の中で条件の合う人を探します。</p>
+        </li>
+        <li>
+          <h3>授業も面談も同じ人</h3>
+          <p>教える人と計画を見る人が分かれないので、弱点の話が授業にそのまま返ってきます。</p>
+        </li>
+        <li>
+          <h3>答案を書いて、直す</h3>
+          <p>授業の前に答案を添削しておき、授業は直す時間に使います。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="week">
+    <div class="wrap">
+      <h2 id="week">1週間の流れ</h2>
+      <ol class="steps">
+        <li>
+          <div>
+            <h3>週の初めに計画を出す</h3>
+            <p>先週やった範囲と、詰まった点を書き込みます。毎日の記録は求めません。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>30分の面談</h3>
+            <p>失点の原因を一緒に確かめ、翌週の計画を決めます。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>60分の授業</h3>
+            <p>添削した答案を返して解説し、弱いところを演習します。週1〜2回です。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>答案の提出と質問</h3>
+            <p>答案は公式LINEで送ります。質問も同じ場所でできます。</p>
+          </div>
+        </li>
+      </ol>
+      <p class="muted">月に1回、保護者の方へ学習の様子をレポートでお送りします。</p>
+      <p><a href="/method/">指導の流れを詳しく見る</a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="price">
+    <div class="wrap">
+      <h2 id="price">料金の目安</h2>
+      <p>
+        授業は{pricing.lesson.unit}{yen(pricing.lesson.price)}、サポート（面談・計画・質問・レポート）は{pricing.support.unit}{yen(pricing.support.price)}です。
+        {!pricing.confirmed && <span class="badge">予定</span>}
+      </p>
+      <p><a href="/price/">料金の詳細を見る</a></p>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import Cta from '../components/Cta.astro';
+import { faqs } from '../data/faq';
+
+// 検索結果にFAQを出しやすくする構造化データ
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base title="よくある質問">
+  <PageTitle title="よくある質問" />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="faq">
+        {
+          faqs.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+      <p class="after-faq">ここにない質問は、公式LINEからどうぞ。</p>
+    </div>
+  </section>
+
+  <Cta />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Base>

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import { site, operator } from '../config/site';
+---
+
+<Base title="運営者情報">
+  <PageTitle title="運営者情報" />
+  <section class="section">
+    <div class="wrap">
+      <dl class="defs">
+        <dt>名称</dt><dd>{site.name}</dd>
+        <dt>運営者</dt><dd>{operator.tradeName}（代表 {operator.representative}）</dd>
+        <dt>開始</dt><dd>{operator.established}</dd>
+        <dt>事業内容</dt><dd>一橋大学志望の高校生を対象とした、オンラインの個別指導と学習管理</dd>
+        <dt>連絡先</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+      </dl>
+      <p class="muted">当塾は一橋大学の在学生による個人の事業で、一橋大学とは関係ありません。</p>
+    </div>
+  </section>
+</Base>

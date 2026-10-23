@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import Cta from '../components/Cta.astro';
+import { site, pricing } from '../config/site';
+---
+
+<Base title="サービス" description="授業とサポートの内容と、講師が決まるまでの流れ。">
+  <PageTitle
+    title="サービス"
+    lead="授業と、学習を続けるためのサポートの2つでできています。担当するのは一橋大学の在学生です。"
+  />
+
+  <section class="section" aria-labelledby="lesson">
+    <div class="wrap">
+      <h2 id="lesson">授業</h2>
+      <p>
+        {pricing.lesson.minutes}分の個別授業を、{site.meetingTool}で行います。{pricing.lesson.note}
+      </p>
+      <ul>
+        <li>授業の前に、提出された答案や演習ノートを講師が添削しておきます。</li>
+        <li>授業では添削を返して解説し、弱いところを演習します。</li>
+        <li>科目ごとに、単元の到達レベルを決めて進めます。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="support">
+    <div class="wrap">
+      <h2 id="support">サポート</h2>
+      <p>授業のない日も、計画どおりに進んでいるかを担当講師が見ます。【要確認】</p>
+      <ul>
+        <li>週に1回、30分のオンライン面談</li>
+        <li>週間計画と提出物の確認</li>
+        <li>公式LINEでの質問対応。{site.replyRule}</li>
+        <li>月に1回、保護者の方へのレポート</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="match">
+    <div class="wrap">
+      <h2 id="match">講師が決まるまで</h2>
+      <p>
+        講師はあらかじめ決まっていません。受けたい科目と、授業を受けたい日時をうかがってから、その条件で教えられる講師を探します。
+      </p>
+      <ol class="steps">
+        <li>
+          <div>
+            <h3>希望を送る</h3>
+            <p>公式LINEから届くフォームで、受けたい科目（社会は日本史・世界史・地理のどれか）と、授業を受けたい日時を送ります。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>講師に声をかける</h3>
+            <p>運営が希望をまとめ、一橋生の講師に、その科目と日時で担当できるかを確かめます。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>講師が決まる</h3>
+            <p>条件の合う講師が見つかったら、公式LINEでお知らせします。合う講師がいないときは、別の日時をご相談します。</p>
+          </div>
+        </li>
+      </ol>
+      <p class="small muted">講師にお伝えするのは、科目・日時・学年・志望学部だけです。お名前や連絡先は、担当が決まるまでお伝えしません。</p>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

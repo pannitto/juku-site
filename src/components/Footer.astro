@@ -1,0 +1,25 @@
+---
+import { site, operator } from '../config/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-name">{site.name}</p>
+      <p class="footer-note">
+        当塾は一橋大学の在学生による個人の事業で、一橋大学とは関係ありません。
+      </p>
+    </div>
+    <nav aria-label="フッター">
+      <ul>
+        <li><a href="/contact/">申し込みの流れ</a></li>
+        <li><a href="/about/">運営者情報</a></li>
+        <li><a href="/legal/terms/">利用規約</a></li>
+        <li><a href="/legal/privacy/">プライバシーポリシー</a></li>
+        <li><a href="/legal/tokushoho/">特定商取引法に基づく表記</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap copyright">&copy; {year} {operator.tradeName}</p>
+</footer>

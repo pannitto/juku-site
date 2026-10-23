@@ -1,0 +1,30 @@
+---
+// トップの見出し横に置く、赤ペンの入った解答用紙。
+// text を20字ずつのマスに並べ、mark の範囲に赤線を引き、comment を赤ペンで書きます。
+// 列数は global.css の .sheet-grid と揃えています（HTML に style 属性を書かないため）。
+interface Props {
+  text: string;
+  mark: string;
+  comment: string;
+}
+const { text, mark, comment } = Astro.props;
+const cols = 20;
+const chars = Array.from(text);
+const start = text.indexOf(mark);
+const markStart = start < 0 ? -1 : Array.from(text.slice(0, start)).length;
+const markEnd = markStart < 0 ? -1 : markStart + Array.from(mark).length;
+const rows = Math.ceil(chars.length / cols);
+const cells = Array.from({ length: rows * cols }, (_, i) => ({
+  ch: chars[i] ?? '',
+  marked: i >= markStart && i < markEnd,
+}));
+---
+
+<figure class="sheet" aria-label="添削された答案の例">
+  <div class="sheet-grid" aria-hidden="true">
+    {cells.map((c) => <span class:list={['cell', { marked: c.marked }]}>{c.ch}</span>)}
+  </div>
+  <figcaption class="sheet-comment">
+    <span class="visually-hidden">答案：{text}。添削：「{mark}」の部分に、</span>{comment}
+  </figcaption>
+</figure>

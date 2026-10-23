@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import Cta from '../components/Cta.astro';
+import { samples } from '../data/samples';
+
+// 答案の中の target 部分に赤線を引くため、前・該当・後に分ける
+const split = (text: string, target: string) => {
+  const i = text.indexOf(target);
+  if (i < 0) return { before: text, hit: '', after: '' };
+  return { before: text.slice(0, i), hit: target, after: text.slice(i + target.length) };
+};
+---
+
+<Base title="添削サンプル" description="実際の添削の例。掲載の同意をいただいた答案です。">
+  <PageTitle
+    title="添削サンプル"
+    lead="掲載の同意をいただいた答案です。名前や学校など、本人が分かる情報は消しています。"
+  />
+
+  {
+    samples.map((s) => {
+      const first = s.comments[0];
+      const parts = split(s.answer, first?.target ?? '');
+      return (
+        <section class="section" aria-labelledby={s.id}>
+          <div class="wrap sample">
+            <h2 id={s.id}>{s.subject}</h2>
+            <p class="muted">問題の要旨：{s.theme}</p>
+
+            <h3>生徒の答案</h3>
+            <p class="sample-answer">
+              {parts.before}
+              {parts.hit && <mark>{parts.hit}</mark>}
+              {parts.after}
+            </p>
+
+            <h3>添削</h3>
+            {s.comments.map((c) => (
+              <p class="pen">
+                <span class="visually-hidden">「{c.target}」について：</span>
+                {c.comment}
+              </p>
+            ))}
+
+            <h3>失点の原因</h3>
+            <ul class="tags">
+              {s.causes.map((c) => <li>{c}</li>)}
+            </ul>
+
+            <h3>書き直した答案</h3>
+            <p class="sample-answer">{s.rewrite}</p>
+          </div>
+        </section>
+      );
+    })
+  }
+
+  <Cta />
+</Base>

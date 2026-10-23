@@ -1,0 +1,20 @@
+{
+  "name": "juku-site",
+  "type": "module",
+  "version": "0.2.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:todo": "node scripts/check-todo.mjs",
+    "check:security": "node scripts/check-security.mjs && npm audit --omit=dev"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.2"
+  }
+}

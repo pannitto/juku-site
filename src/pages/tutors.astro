@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import Cta from '../components/Cta.astro';
+import { tutors } from '../data/tutors';
+---
+
+<Base title="講師" description="授業と学習管理を担当する一橋大学の在学生。">
+  <PageTitle
+    title="講師"
+    lead="全員が一橋大学の在学生です。受けたい科目と日時をうかがってから、条件の合う講師が担当します。"
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <ul class="tutors">
+        {
+          tutors.map((t) => (
+            <li class="tutor">
+              {t.photo && <img src={t.photo} alt="" width="96" height="96" loading="lazy" />}
+              <h2 class="h3">{t.name}</h2>
+              <dl>
+                <dt>所属</dt>
+                <dd>{t.faculty} {t.year}</dd>
+                <dt>受験の社会</dt>
+                <dd>{t.socialSubject}</dd>
+                <dt>担当科目</dt>
+                <dd>{t.subjects.join('、')}</dd>
+              </dl>
+              <p>{t.message}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+
+<style>
+  .h3 {
+    font-size: var(--step-1);
+  }
+</style>
